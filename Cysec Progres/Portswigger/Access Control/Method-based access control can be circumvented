@@ -1,0 +1,4 @@
+1. Akses web yang akan ditarget dan lakukan reconnaissance dengan burp suite
+2. Login sebagai admin untuk melihat request privilage escalation yang dilakukan oleh admin
+3. Ambil requestnya dan ubah username susai dengan yang diinginkan 
+4. Jangan lupa ubah nilai cookie menjadi cookie(sendiri) yang sedang aktif dan juga ganti metode dengan apapun yang bisa dicoba

@@ -1,0 +1,4 @@
+1. Akses web yang ingin di target lalu lakukan reconnaisance dengan burp suite
+2. Pada salah satu request send to repeater
+3. Tsmbahkan protokol X-Original-URL lalu isi dengan halaman yang ingin diakses namun diblokir
+4.Jika semisal di url query anda(yg untuk tujuan anda) mengandung data seperti ?blb... ataupun =blbl... maka taruh data tersebut di query GET yg asli, jangan diikutkan di X-Original karena dia hanya menerima alamat bukan data

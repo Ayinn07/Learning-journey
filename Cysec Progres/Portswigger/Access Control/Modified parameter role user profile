@@ -1,0 +1,4 @@
+1. Akses web target dan lakukan proses reconnaissance dengan burp suite
+2. Coba akses semua halaman yang mungkin akan mentriger parameter role di request http
+3. Pada kasus ini di salah satu request anda akan mendapatkan respon yang mengandung kode json yang memiliki roleid 1
+4. Cari request yang juga mengandung kode json lalu paste kode json roleid di point 3 dan ubah roleid nya ke 2 dan juga jangan lupa ubah url ke tujuan yang diinginkan

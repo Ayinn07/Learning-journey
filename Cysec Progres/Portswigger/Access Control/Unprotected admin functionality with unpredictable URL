@@ -1,0 +1,3 @@
+1. Akses web target lalu coba lakukan reconnaissance pada halaman-halaman web yang ungkin untuk diakses menggunakan burp suite
+2. Apabila beruntung maka kita akan menemukan suatu request yang responnya mengandung script atau javascript yang mungkin membocorkan panel admin yg namanya unpredictable
+3. Akses panel admin tersebut

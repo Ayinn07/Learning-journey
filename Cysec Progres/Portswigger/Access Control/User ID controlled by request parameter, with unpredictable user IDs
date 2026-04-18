@@ -1,0 +1,7 @@
+pada lab kali ini mengandung kerentanan yang dimana terdapat parameter yang masih dapat diubah oleh pengunjung akan tetapi id yang ditampilkan unpredictable yang artinya akan sangat susah untuk ditevak
+
+1. masuk ke web target dan hubungkan ke burp suite untuk melakukan proses recon 
+2. amati bahwa suatu blog artikel diposting oleh si target dan dapat kita klik usernya
+3. perhatikan user id target lalu tempelkan user id tersebut ke request login yang seharusnya dan kita akan mendapatkan api key target
+
+untuk mengatasi kerentanan seperti ini kita harus tidak boleh percaya terhadap input user dan bisa menggunakan teknik validasi apakah user yg meminta request tersebut dan berhubungan dengan datanya harus dipastikan sudah login

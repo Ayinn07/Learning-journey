@@ -1,0 +1,7 @@
+lab ini mengandung celah keamanan yang dimana pengunjung dapat mengganti suatu parameter dengan nilai lainnya sehingga mendapatkan informasi tentang sumber daya yang bukan miliknya
+
+1. masuk ke web target lalu hubungkan web ke burp suite untuk melakukan proses recon
+2.lakukan proses login dan amati bahwa anda akan mendapatkan suatu request http yang memproses login tersebut
+3. Ubah bagian parameter id menjadi nilai yang anda inginkan dan selamat, lab ini selesai
+
+untuk mencegah keamanan ini sebaiknya lakukaan pencocokkan session cookie dengan nilai parameter agar oranglain tidak bisa mengubah seenaknya atau juga bisa menggunakan teknik mapping yang dimana info yang ditampilkan di url pengunjung hanya berlaku untuk pengunjung tersebut, jadi jika pengunjung lain mencoba melakukan hal yg sama hasilnya mungkin akan berbeda.

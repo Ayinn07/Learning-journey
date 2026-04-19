@@ -1,0 +1,8 @@
+pada lab kali terdapat celah dimana kita dapat mengedit isi paramater yang berfungsi untuk mendownload file, berikut cara menyelesaikan lab ini:
+
+1. masuk ke web target dan hubungkan ke burp suite untuk melakukan proses recon
+2. amati fitu live chat dan coba download chat, maka anda akan mendapati anda mengundu file bernama 2.txt(mengapa dimulai dari 2, bukan 1?)
+3. ubah parameter di burp suite dari 2.txt ke 1.txt(karena kita tidak tau apa isi dari 1.txt)
+4. anda akan mendapati bahwa ada isi chat yang dimana itu berisi password dari akun terget
+
+untuk mencegah  hal pada lab ini terjadi di kasus nyata, jangan sesekali mencoba untuk mengungkap kredensial di ruang publik.

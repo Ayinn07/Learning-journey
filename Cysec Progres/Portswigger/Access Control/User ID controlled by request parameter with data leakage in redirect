@@ -1,0 +1,8 @@
+pada lab kali ini terdapat celah keamanan yang dimana pengunjung dapat mengganti nilai parameter sehingga dapat mengambil data user lain akan tetapi tidak langsung ditunjukkan data user lain melainkan diperlihatkan kembali ke halaman login di browser, cara mengeksploitnya:
+
+1. masuk ke web target dan hubungkan ke burp suite atau sejenisnya untuk melakukan proses recon
+2. lakukan proses login di web dan amati bawha anda akan menerima request login di burp suite
+3. ubah nilai parameter id dengan nilai yang anda inginkan lalu kirim
+4. cari request hasil dari editan anda lebih tepatnya request yang tidak di redirect atau hasil aslinya
+
+untuk mengatasi celah ini bisa dengan mengggunakan cara seperti memvalidasi apakah user saat ini memiliki acces untuk mengambil data tersebut atau tidak sebelum mengakses database atau bisa juga dengan menggunakan code yang logikanya tidak hanya melakukan redirect akan tetapi bisa langsung memutus atau mematikan proses

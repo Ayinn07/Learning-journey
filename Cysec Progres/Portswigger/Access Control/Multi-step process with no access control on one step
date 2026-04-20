@@ -1,0 +1,11 @@
+pada lab kali ini terdapat kerentana dimana pada saat admin melakukan proses upgrade role terdapat beberapa langkah yang harus dilewati oleh administrator
+sebelum suatu user benar benar diubah rolenya, masalahnya pada salah satu langkah selama proses tersebut berlangsung mengandung celah keamanan yang dimana 
+siapapun bisa mengggunakan fitur itu jadinya jika mereka tau halaaman atau struktur request httpnya. berikut adalah cara menyelesaikan lab ini:
+
+1. masuk ke web target dan hubungkan ke burp suite untuk melakukan proses recon sembari mencari celah keamanan
+2. login sebagai administrator untuk mengetahui proses privillage escalation nya dan pantau strukturnya di request burp site
+3. perhatikan request terakhir yang benar benar berfungsi untuk menjalankan proses pravillage escalation ini 
+4. ubah bagian parameter yang di inginkan dan sesuaikan nilai cookienya menjadi nilai cookie anda
+
+untuk menghindari celah seperti ini bisa dengan mencocokkan nilai session user supaya dari langkah awal saat melakukan pravillage escalation untuk memastikkan 
+nilai session nya sama, bisa juga dengan menggunakan acces control berdasarkan role supaya yang dapat mengubah hal tersebut hanya admin dsb.

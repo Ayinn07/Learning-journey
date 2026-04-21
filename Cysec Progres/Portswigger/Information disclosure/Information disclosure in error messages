@@ -1,0 +1,12 @@
+pada lab kali ini terdapat celah keamanan yang dimana saat terjadi error maka pesan errornya 
+mengungkap suatu data. berikut cara menyelesaikan lab ini:
+
+1. masuk ke web target dan lakukan proses recon menggunakan burp suite
+2. amati pada suatu request yang mengandung parameter, ambil lalu edit nilai parameternya sehinggan 
+menimbulkan error dan anda akan mendapati informasi versi dari servernya
+
+dari sini saya belajar jika pesan error yang muncul saat terjadi kesalahan bisa saja berbahaya
+jika tidak di kelola dengan benar. berdasarkan hasil riset yang saya lakukan ada beberapa cara 
+yang mungkin dapat digunakan untuk menutup celah ini misalnya kita bisa buat pesan error hanya
+muncul di server side sedangkan di halaman user kita bisa buat halaman html yang tept sesuai 
+kode yang didapatkan dan kita putuskan untuk tampilkan ke pengunjung

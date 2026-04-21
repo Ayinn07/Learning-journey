@@ -1,0 +1,14 @@
+pada lab kali ini terdapat suatu celah yang dimana mempunyai halaman debug atau disebut debug page yang 
+dimana terekspos di suatu request http yang ada pada halaman web yang biasa diakses pengunjung. berikut cara menyelesaikna lab ini:
+
+1. masuk ke web target lalu hubungkan ke burp suite untuk melakukan proses recon
+2. setelah melakukan semua kemungkinan yang ada perhatikan pada salah satu request di burp suite 
+lebih tepatnya request yang mengarah ke url product, disana terekspos bahwa web tersebur mempunyai
+halaman debug yang dapat kita akses url nya karena ditampilkan link url nya di bagian response
+3. buka halamannnya sesuai url yg tertera di point 2 dan amati informasi apa saja yang terlihat 
+disana karena itu akan sangat berharga pada saat proses recon ini
+
+dari sini saya belajar bahwa sebaiknya kita tidak menaruh informasi berharga dibagian pemrograman yang mungkin dapat dilihat oleh user.
+berdasarkan hasil riset pembelajaran saya pada lab ini, untuk mengantisipasi hal seperti ini terjadi kita dapat membuat informasi 
+berharga seperti url halam debug seperti ini supaya hanya tersimpan di database server atau jangan tampilkan sama sekali supaya pengunjung 
+tidak dapat mengakses web nya sewwenwng wenang.

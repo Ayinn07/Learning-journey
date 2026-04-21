@@ -1,0 +1,11 @@
+pada lab kali ini terdapat celah keamanan yang dimana padaa saat ingin mengakses halaman yang hanya dapat diakses admin kita hanya
+perlu mengetahui struktur header lebih tepatnya bagian Referer atau url halamaan sebelumnya. berikut cara menyelesaikan lab ini:
+
+1. masuk ke web target dan lakukan recon  menggunakan burp suite 
+2. coab login sebagai daministrator lalu akses fitu privilage escalation untuk memicu struktur request httpnya di byrp suite
+3. amati pada request halaman yang benar benar berfungsi untuk melakukan privillage escalation lalu amati bagia Referer nya
+4. masuk ke akun sendiri dan ambil request yang sesuai dengan point 3 lalu ubah kredensialnya sesuai dengan akun user yang
+   kita inginkan lalu jangan lupa untuk mengganti session cookie menggunakan session milik kita 
+
+untuk menghindari hal sepertui ini dapat terjadi kita bisa menggunakan tambahan protokol lain untuk mencocokan proreses otorisasi ini, 
+misalnya menggabungkan teknilk ini dengan RBAC dan csrf sebagai autorizator tambahan. jangan pernah hanya mengacu pada 1 hal dan biasakan untuk menerapkan Defense in Depth 

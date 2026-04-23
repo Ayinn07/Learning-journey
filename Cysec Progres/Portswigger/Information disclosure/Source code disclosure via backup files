@@ -1,0 +1,10 @@
+pada lab kali ini terdapat celah keamanan yang dimana developer meletakkan teks penting 
+di file backup yang dapat diakses oleh siapa saja asal tau path url nya. berikut cara menyelesaikan lab ini:
+
+1. masuk web target dan ambahkan path /robots.txt di url untuk melihat halaman halaman
+apa saja yang memungkinkan disimpan dan tidak dipublikasi oleh developer di sana
+2. cari kode atau teks spesifik yang dibutuhkan lalu submit
+
+setelah menyelesaikan lab ini hal yang dapat dipelajari adalah jangan menaruh folder penting 
+di robots.txt tanpa proses autentikasi atau autorisasi yang kuat disana dan sebaiknya mengunakan 
+cara lain untuk mengamankan folder tersebut.

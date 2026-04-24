@@ -1,0 +1,17 @@
+pada lab kali ini terdapat kerentanan dimana developer membiarkan metode TRACE tetap aktif di request http sehingga kita
+dapat melihat informasi header ketika server melakukan tracing dan kita akan menggunakan informasi berharga dari sana untuk 
+menyelesaikan lab ini, berikut cara menyelesaikannya:
+
+1. masuk web target dan sambungkan ke burp suite untuk sembari melakukan proses recon
+2. login sebagai user biasa atau coba ambil salah satu request yang didapatkan di burp suite untuk diganti metode nya ke TRACE
+3. kirim lalu perhatikan bahwa ada salah satu fungsi header yang dapat kita manfaatkan untuk mendapatkan akses admin di akan kita
+4. header ini bernama X-Cusstom-IP-Authorization, ubah nilai ip nya menjadi ip yang berkemungkinan berasal dari dalam perusahaan(alasan dibawah)
+5. setelah mendapatkan panel admin hapus user carlos
+
+header X-Cusstom-IP-Authorization disini kemungkinan berfungsi untuk melakukan proses otorisasi yang dimana mengecek nilai 
+ip user lalu mengirimkannya ke back-end. masalahnya back-end disini terlalu percaya pada nilai header X-Cusstom-IP-Authorization
+tanpa memvalidasi berapa ip pengunjung saat ini.
+
+untuk mencegah hal seperti ini dapat terjadi melalui hasil riset pembelajaran saya kita bisa mematikkan metode TRACE pada request
+http dan hanya mengizinkan GET dan POST atau lainnya yg masih dibutuhkan, kemudia kita bisa melakukan whitelist ip supaya mendapatkan 
+akses ke fitur admin tanpa menggunakan header X-Custom-Ip-Authorization.

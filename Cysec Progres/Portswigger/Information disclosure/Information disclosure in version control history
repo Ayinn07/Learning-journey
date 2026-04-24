@@ -1,0 +1,13 @@
+pada lab kali ini terdapat kerentanan yang dimana developer menyimpan semua data kontrol versinya
+dalam folder yang disebut .git akan tetapi file tersebut ikut terdeploy bersama websitenya sehingga 
+dapat kita lihat isinya, berikut cara menyelesaikan lab kali ini:
+
+1. masuk ke web target dan hubungkan web ke burp suite untuk sembari melakukan proses recon
+2. masuh ke directory .git dengan menambhakan /.git di url
+3. unduh file .git ini dengan mmenggunakan wget -r (url)
+4. periksa isi dari foldernya menggunakan fungsi git lalu ambil informasi yang mungkin berharga
+
+file .git sendiri mencatat segala perubahan yang terjadi meskipun sudah dihapus jadi sebaiknya untuk 
+mencegah hal seperti ini terjadi kita bisa membuat orang untuk tidak dapat mengakses file atau directory 
+yang awalnya . atau juga bisa dengan tidak ikut memasukkan file .git saat melakukan deploy web sehingga 
+hanya file web jadi yang terupload.

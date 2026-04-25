@@ -1,0 +1,11 @@
+pada lab kali ini terdapat kerentana yang dimana server membiarkan pengunjung untuk mengedit nilai 
+yang tertera di browser lalu di proses begitu saja sehingga menjadi suatu kerentana bussines logic,
+berikut cara menyelesaikan lab ini:
+
+1. masuk ke web target dan hubungkan ke burp suite senmbari melakukan proses recon
+2. login dan coba untuk memasukkan item ke kranjang
+3. cari salah satu request di burp suite yang mengandung nilai harga dari barang tersebut lalu ubah
+
+pada dasarnya seharusnya suatu web tidak mempercayai data apapun dari halaman suatu web melainkan
+menyediakan data berdasarkan database yang seharusnya tersimpan rapi dan aman sehingga untuk mencegah 
+hal ini terjadi di kejadian nyata sebaiknya kita menggunakan database untuk suatu nilai dan mencocokkannya.

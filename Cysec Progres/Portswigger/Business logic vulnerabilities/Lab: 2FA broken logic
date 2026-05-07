@@ -1,0 +1,16 @@
+pada lab kali inin terdapat celah yang dimana pada saat proses login dan memasukkan kode 2fa web 
+tidak menerapkan proteksi tambahan untuk melindungi proses penginputan kode ini sehingga dapat di
+brute force atau sejenisnya, berikut adalah tahap tahap utama untuk menyelesaikan lab kali ini:
+
+1. masuk ke web target dan lakukan proses recon sembari menghubungkannya ke burp suite
+2. amati bahwa ada request http yang tugasnya adalah mengirim kode 2fa lalu gunakan request itu
+untuk meminta kode 2fa yang akan terkirim di email client milik carlos
+3. dikarenakan kita tidak dapat mengamati email client milik carlos maka kita gunakan metode brute 
+force untuk menebak kode 2fa yang baru saja kita lakukan di point 2
+4. setelah berhasil mendapatkan kode yg benar logik dan lab selesai
+
+terkadang celah keamanan tidak berasal dari hal hal yang besar melainkan bisa juga dari jenis jenis
+serangan yang simple seperti brute force. akan lebih baik jika kita menggunakan teknik seperti 
+verifikasi cokkie untuk setiap inpput yang dilakukan b oleh user dan pastikan itu cocok dari proses
+awal hingga finish, kita juga bisa mengatasi bruteforce ini dengan menerapkan 1 ip untuk kode mfa 
+yang dikirimkan agar tidak terjadi percobaan penyerangan seperti brute force tadi.

@@ -1,0 +1,14 @@
+Pada lab kali ini kita akan menyelesaikan sebuah celah keamanan yg dimana nilai harga dari suatu barang 
+disimpan dalam tipe data integer 32 bit sehingga dapat kita akali hingga menghasilkan nilai minus menggunakan
+automasi, kemudian kita dapat membeli barang mahal tanpa butuh saldo yang banyak. Detail penyelesaian lab sebagai berikut:
+
+1. masuk ke website target dan lakukan recon pada fungsi fungsinya menggunakan bantuan burp suite
+2. ambil suatu request pada cart atau keranjang(sesuaikan target item dengan kebutuhan) untuk kita kirim ke turbo intruder
+3. siapkan script untuk menargetkan param quantity atau jumlah item
+4. mulai attack hingga menghasilkan nilai minus kemudia lanjutnya hingga nilai minus itu mencapai nilai positif kembali
+   namun menyyesuaikkan dengan saldo yang kita miliki sehingga dapat dibeli
+
+umumnya developer sekarang menggunakan cara menggunakan tipe data khusus untuk menyimpan nilai uang yang tidak akan 
+menghasilkan looping atau nilai minus, kemudian developer juga bisa mengganti tipe integer dari 32-bit ke 64-bit, alhasil 
+membutuhkab percobaan yang lebih banyak untuk mengirim item sehingga kemungkinan sebelum mencapai nilai minus sistem sudah mendeteksinya 
+sebagai spam atau percobaan serangan ddos kemudia di ban.

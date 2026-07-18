@@ -1,5 +1,8 @@
 # Catatan Lab: Unprotected Admin Panel (Security through Obscurity via robots.txt)
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ee943601-a543-4458-a2d5-7eed9e25b1d5" />
+
+
 ## Mengenal Celah Keamanan
 Celah keamanan ini terjadi karena pengembang menerapkan prinsip keamanan yang cacat, yaitu **Security through Obscurity**. Aplikasi web memiliki panel administratif sensitif, namun alih-alih melindunginya dengan sistem login dan otorisasi yang ketat, pengembang hanya menyembunyikan tautan tersebut dari halaman utama dan memblokir indeksasinya di mesin pencari.
 

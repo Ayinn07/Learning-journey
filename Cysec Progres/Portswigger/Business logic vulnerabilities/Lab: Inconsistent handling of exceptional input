@@ -1,0 +1,15 @@
+Pada lab kali ini kita akan menyelesaikan celah keamanan yg dimana terdapat fungsi email klien yg menempilkan info dari domain yg kita miliki beserta dengan subdomain(apapun). 
+Tujuan utama kita yaitu berusaha untuk mencapai limit tipe data yg diterapkan pada kolom database di server web yg berfungsi untuk menampung input dari email di menu register. 
+pada kasus ini saya menebak jika tipe data yg digunakan untuk kolom tersebut adalah VARCHAR dengan panjang 255 karakter sehingga kita akan menarget limit 255 karakter ini 
+berikut cara pengimplementasian sekaligus penyelesaian labnya:
+
+1. masuk ke web target dan lakukan proses recon yg memungkinkan dengan burpsuite atau sejenisnya
+2. masuk ke kolom register dan amati bahwa ada pesan "If you work for DontWannaCry, please use your @dontwannacry.com email address" 
+   jadi dapat kita simpulkan bahwa akun yg terhubung ke email dontwannacry.com maka akan dianggap sebagai anggota perusahaan tersebut sehingga pasti akan mendapatkan fitur khusus admin terhadap akunnya
+3. selanjutnya kita dapat memasukkan karakter acak sepanjang 238 karakter lalu ditambah dengan @dontwannacry.com lalu ditambah .alamat-email-server. 
+   Alasan: alasan dibalik kita membuatnya seperti itu karena kita akan membuat database mencata email akun tersebut sebagai bagian dari dontwannacry karena batas panjang 255 karakter akan tercapai diakhir huruf m yaitu dontwannacry.co(m) 
+   dan karakter setelahnya tidak tercata karena panjang limit karakter sudah tersentuh, sedangkan internet akan tetap memproses pengiriman verifikasi url ke email server kita karena internet
+   tidak membantasi panjang karakter inputan.
+4. verifikasi akun lewat email server dan lakukan proses login maka akun tersebut dapat dipastikan memiliki fitur admin karena dianggap sebagai bagian dari dontwannacry.com lalu hapus user bernama carlos.
+
+hal yg dapat saya simpulkan adalah sebaiknya kita mengizinkan proses masuknya email ini dari sembarangan url atau subdomain, kita sebagai web developer harus membuat aturan static terkait hal ini dan juga untuk database yg kemungkinan akan diisi sebaiknya menggunakan tipe data TEXT untuk menghindari serangan seperti ini.

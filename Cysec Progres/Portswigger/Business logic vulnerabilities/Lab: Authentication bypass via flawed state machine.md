@@ -11,7 +11,7 @@ Terjadi celah keamanan *Business Logic* pada alur otentikasi aplikasi. Server me
 ## 3. Impact
 Pengguna biasa dapat memotong alur pemilihan peran (*role selection*) dan secara otomatis memperoleh hak akses **Administrator**. Hal ini memungkinkan penyerang mengambil alih kontrol penuh atas sistem, termasuk melakukan tindakan administratif seperti menghapus akun pengguna lain (`carlos`).
 
-## 4. Steps to Reproduce (PoC)
+## 4. Steps to Reproduce
 1. Akses halaman login dan masukkan kredensial pengguna standar (`wiener:peter`).
 2. Setelah login berhasil, perhatikan bahwa aplikasi mengarahkan (*redirect*) pengguna ke alur pemilihan peran pada endpoint `/select-role`.
 3. Tanpa menyelesaikan pemilihan peran, ubah URL pada browser secara langsung menuju halaman utama `/` (atau tangkap request menggunakan Burp Suite dan selesaikan navigasi secara manual).

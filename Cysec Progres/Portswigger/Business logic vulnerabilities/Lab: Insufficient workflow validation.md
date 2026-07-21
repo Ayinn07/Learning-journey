@@ -12,7 +12,7 @@ Pada lab e-commerce ini, terdapat kerentanan **Business Logic Vulnerability** be
 
 ---
 
-## 🚀 Steps to Reproduce (PoC)
+## 🚀 Steps to Reproduce
 
 1. **Reconnaissance & Baseline Flow:**
    * Lakukan navigasi normal pada aplikasi e-commerce menggunakan Burp Suite.

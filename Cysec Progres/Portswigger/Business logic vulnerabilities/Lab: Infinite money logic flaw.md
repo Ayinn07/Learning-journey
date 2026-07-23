@@ -11,7 +11,7 @@ Hal ini memungkinkan pengguna untuk menghasilkan keuntungan finansial (*unlimite
 * **Vulnerability Type:** Business Logic Flaw / Inconsistent Logic Handling
 * **CWE Reference:** CWE-840 (Business Logic Errors)
 * **Severity:** Critical / High (Financial Loss / Access Bypass)
-* **Target Endpoint:** `/cart`, `/cart/coupon`, `/cart/checkout`, `/gift-card/redeem`
+* **Target Endpoint:** `/cart`, `/cart/coupon`, `/cart/checkout`, `/gift-card`
 
 ---
 

@@ -1,21 +1,40 @@
-##Lab: Authentication bypass via encryption oracle
+# Lab: Authentication Bypass via Encryption Oracle
 
-Celah dimana website memiliki menu atau halaman yang secara tidak langsung berfungsi untuk menampilkan hasil dari enkripsi data dan juga ada bagian yang berfungsi untuk mendecode data adalah kombinasi mematikan dalam skenario encryption oracle karena
-dapat dimanfaatkan seseorang untuk memasukkan data sewenang wenang
+## 1. Executive Summary
+Terjadi kerentanan **Business Logic / Encryption Oracle** pada aplikasi web. Aplikasi mengekspos fungsi enkripsi dan dekripsi secara tidak langsung melalui endpoint komentar dan notifikasi, sehingga memungkinkan *unauthenticated attacker* memanipulasi data terenkripsi untuk memalsukan cookie autentikasi sebagai `administrator`.
 
-vulnerability type: high/critical
-target:
-(enkripsi) /post/commenct 
-(dekripsi) /post?postId=x parameter notification
+---
 
-panduan penyelesaian lab:
-1. open website target dan login dengan opsi stay logged in dicentang
-2. masukkan nilai stay logged in ke parameter notification di /post?postid=x untuk melihat format cookie stay logged in
-3. edit sedemikian rupa untuk menjadi administrator:timestamp
-4. targetkan byte mulai setelah 32 di penulisan email pada /post/comment karena target kita mendapatkan nilai enkripsi dari administrator:timestamp untuk ditaruh di staylogged in
-5. setelah mendapat versi enkripsinya decode data lalu buang 32 byte sampah diawal sehingga menyisakan versi enkripsi dari administrator:timestamp lalu decode kembali ke url type 
-6. temple nilai hasil decode url ke staylogged in dan hapus nilai cookie session supaya server hanya mencocokkan nilai cookie staylogged in
-7. setelah berhasil masuk akun admin hapus user carlos
+## 2. Vulnerability Overview
+| Parameter | Detail |
+| :--- | :--- |
+| **Vulnerability Type** | Business Logic Flaw / Encryption Oracle Bypass |
+| **Severity** | High / Critical |
+| **Affected Endpoint(s)** | `/post/comment` (Encrypt), `/post?postId=x` (Decrypt via `notification`) |
+| **Impact** | Authentication Bypass / Privilege Escalation to Admin |
 
-menyediakan fitur staylogged in mungkin akan cukup berguna tapi akan menjadi kurang efektif dengan adanya celah seperti ini maka demikian sebaiknya tingkatkan proses verifikasi data misal pastikan cookie yang sudah disetting di awal pastikan 
-ketersediaannya tetap ada hingga proses terakhir selesai untuk menghindari manipulasi seperti ini.
+---
+
+## 3. Proof of Concept (Steps to Reproduce)
+
+1. **Identifikasi Cookie Autentikasi:**
+   * Login menggunakan kredensial standar dengan opsi **"Stay logged in"** diaktifkan.
+   * Ambil nilai cookie `stay-logged-in`.
+
+2. **Pengujian Encryption Oracle:**
+   * Masukkan nilai cookie `stay-logged-in` ke dalam parameter `notification` pada endpoint `/post?postId=x` untuk mengamati hasil dekripsi server.
+
+3. **Eksploitasi & Manipulasi Byte:**
+   * Buat struktur muatan (payload) target: `administrator:<timestamp>`.
+   * Gunakan fitur input pada `/post/comment` untuk mendapatkan ciphertext khusus dengan memanfaatkan padding byte (melewati offset 32 byte awal).
+
+4. **Autentikasi Palsu:**
+   * Salin ciphertext yang telah disesuaikan ke cookie `stay-logged-in`.
+   * Hapus cookie `session` agar aplikasi dipaksa melakukan validasi berbasis cookie `stay-logged-in`.
+   * Akses halaman panel admin (`/admin`).
+
+---
+
+## 4. Remediation & Recommendation
+* **Pemisahan Kunci Enkripsi:** Gunakan kunci terpisah (*key separation*) atau algoritma HMAC (*Encrypt-then-MAC*) untuk memastikan integritas data terenkripsi sebelum didekripsi.
+* **Validasi Sesi:** Pastikan cookie `stay-logged-in` selalu divalidasi silang dengan data sesi aktif di sisi server, serta memiliki masa kadaluarsa (*expiration*) yang ketat.

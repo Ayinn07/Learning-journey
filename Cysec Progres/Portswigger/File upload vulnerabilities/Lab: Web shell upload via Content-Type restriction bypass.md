@@ -38,6 +38,8 @@ Terjadi kerentanan **Unrestricted File Upload** akibat mekanisme validasi yang l
      Menjadi:
      ```http
      Content-Type: image/jpeg
+     Atau
+     Content-Type: image/png
      ```
    * Teruskan (*forward*) request yang telah dimanipulasi ke server.
 

@@ -1,38 +1,52 @@
-# Lab: Web shell upload via extension blacklist bypass
+# Lab: Web Shell Upload via Extension Blacklist Bypass
+
+## 1. Executive Summary
+Terjadi kerentanan **Unrestricted File Upload via Blacklist Bypass** pada fungsi pengunggahan foto profil. Aplikasi web menerapkan mekanisme keamanan berbasis *blacklist* untuk memblokir ekstensi skrip populer (seperti `.php`). Namun, web server (Apache) mengizinkan pengunggahan berkas konfigurasi `.htaccess`. Penyerang dapat mengunggah berkas `.htaccess` kustom untuk memetakan ekstensi acak (misal: `.abc`) sebagai skrip PHP executable, sehingga berhasil mengeksekusi **Remote Code Execution (RCE)**.
 
 ---
 
-## Backgroound
+## 2. Vulnerability Details
+| Parameter | Detail |
+| :--- | :--- |
+| **Vulnerability Type** | Blacklist Bypass / Arbitrary File Upload |
+| **Severity** | Critical |
+| **Target Web Server** | Apache HTTP Server (`.htaccess` support enabled) |
+| **Impact** | Remote Code Execution (RCE) & Server Compromise |
 
-Terdapat suatu celah yang dimana user dapat mengupload file yang tidak terblokir ekstensinya akan tetapi file spesifik yang ingin di targetkan user adalah `.htaccess` dikarenakan web server pada lab ini menggunakan layanan web server seperti .htaccess
-sehingga kita dapat mengupload file konfigurasi terbaru sehingga memungkinkan payload kita nantinya dapat dieksekusi meskipun pada lab ini telah diterapkan filterasi seperti pemblokiran upload file yang menggunakan tipe `.php` akan tetapi dengan 
-adanya konfigurasi `.htaccess` ini user dapat mengelabuinya.
+---
 
-## Detail vulnerability
-type: upload file malicious
-savirity: critical/high
-effect: user dapat menjalankan kode payload sehingga dapat membocorkan data di komputer server
+## 3. Proof of Concept (Steps to Reproduce)
 
-## Step to practice
-1. Login
-   -masuk dengan akun valid dan cari menu upload file
-2. reconnaisance
-   -coba langusung upload file berestensi .php maka akan di blokir oleh server responsenya
-3. Pembuatan payload
-   - buat suatu file berekstensi bebas misal exploi.abc lalu isi kodenya dengan kod berikut:
+1. **Reconnaissance & Blacklist Verification:**
+   * Login ke aplikasi dan coba unggah berkas `exploit.php`.
+   * Server menolak pengunggahan, mengonfirmasi adanya mekanisme filter berbasis *blacklist* pada ekstensi `.php`.
+
+2. **Persiapan Payload:**
+   * Buat berkas skrip PHP bernama `exploit.abc`:
      ```php
-     <?php echo file_get_contents('/home/carlos/secret'); ?>
+     <?php
+     echo file_get_contents('/home/carlos/secret');
+     ?>
      ```
-   -buat file htaccess dan isi dengan kode berikut:
-   ```http
-   AddType application/x-httpd-php .abc
-   ```
-4. Delivery payload
-   -upload file htaccess di fungsi form upload file sembari menghidupkan mode intercept burp suite
-   -kirim hasil intercept ke repeater lalu ubah fieldname dari yang awalnya `htaccess` menjadi `.htaccess` lalu kirim
-   -setelah terkirim selanjutnya upload file exploit.abc di form yang sama
-   -refresh halaman untuk mentriger kode yang telah terkirim
-   -analisis http reqponse maka salah satu akan menampilkan info isi `/home/carlos/secret`
+   * Buat berkas konfigurasi `.htaccess` lokal untuk memetakan ekstensi `.abc` ke MIME-type PHP:
+     ```apache
+     AddType application/x-httpd-php .abc
+     ```
 
-## Mitigasi 
-Lakukan pemblokiran pada file konfigurasi seperti file yang diawali dengan . atau nama konfigurasi sejenisnya supaya user tidak dapat melakukan penguploadan `.htaccess`
+3. **Eksploitasi (Override Web Server Configuration):**
+   * Unggah berkas `.htaccess` melalui form foto profil. (Jika nama berkas terpotong saat diunggah, cegat request di **Burp Suite** dan ubah parameter `filename="htaccess"` menjadi `filename=".htaccess"`).
+   * Setelah konfigurasi `.htaccess` berhasil terpasang di server, unggah berkas `exploit.abc`.
+
+4. **Eksekusi Kode (RCE):**
+   * Akses URL berkas yang baru diunggah (misal: `/files/avatars/exploit.abc`).
+   * Web server Apache akan memproses `.abc` sebagai skrip PHP dan mengeksekusi perintah untuk membaca berkas `/home/carlos/secret`.
+
+---
+
+## 4. Remediation & Recommendation
+* **Gunakan Whitelisting (Bukan Blacklist):** Terapkan pendekatan *strict extension whitelisting* yang hanya mengizinkan ekstensi gambar valid (misal: `.jpg`, `.jpeg`, `.png`). Tolak semua ekstensi lainnya secara *default*.
+* **Disable Overrides (`AllowOverride None`):** Konfigurasikan server Apache agar tidak memproses berkas `.htaccess` pada folder publik/upload dengan mengatur direktori:
+  ```apache
+  <Directory "/var/www/uploads">
+      AllowOverride None
+  </Directory>

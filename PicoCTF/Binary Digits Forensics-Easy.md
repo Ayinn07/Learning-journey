@@ -1,7 +1,7 @@
 ## Challenge Name: Binary Digits (Easy)
 - **Category:** Forensics
 - **Concept Learned:** Menemukan makna asli dari suatu teks yang diubah ke biner  
-- **Tools Used:** `strings`, `grep`, `mount`, `umount`
+- **Tools Used:** `CyberChef`
 
 ### Solution Steps:
 

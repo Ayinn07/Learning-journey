@@ -6,7 +6,7 @@ Selamat datang di repositori dokumentasi belajar saya. Di sini saya menyimpan pr
 
 ### 🛡️ Cybersecurity Labs
 * **[PicoCTF/CyLab Security Academy](./bandit-wargames/)**: Catatan penyelesaian tantangan Linux dasar dan keamanan server.
-* **[PortSwigger Academy](./portswigger-labs/)**: Dokumentasi teknik serangan web seperti SQL Injection dan Authentication Bypass.
+* **[PortSwigger Academy](./Portswigger/)**: Dokumentasi teknik serangan web seperti SQL Injection dan Authentication Bypass.
 
 ---
 *Follow my progress as I prepare for my journey in Information Technology!*

@@ -5,8 +5,8 @@ Selamat datang di repositori dokumentasi belajar saya. Di sini saya menyimpan pr
 ## 📂 Daftar Proyek & Catatan
 
 ### 🛡️ Cybersecurity Labs
-* **[OverTheWire: Bandit](./bandit-wargames/)**: Catatan penyelesaian tantangan Linux dasar dan keamanan server.
+* **[PicoCTF/CyLab Security Academy](./bandit-wargames/)**: Catatan penyelesaian tantangan Linux dasar dan keamanan server.
 * **[PortSwigger Academy](./portswigger-labs/)**: Dokumentasi teknik serangan web seperti SQL Injection dan Authentication Bypass.
 
 ---
-*Follow my progress as I prepare for my journey in Informatics Engineering!*
+*Follow my progress as I prepare for my journey in Information Technology!*
